@@ -3,3 +3,5 @@ export * from './PasswordFormField';
 export * from './CustomFilledButton';
 export * from './SpinnerComponent';
 export * from './PublicHeader';
+export * from './CustomSidebar';
+export * from './CustomNavLink';

@@ -6,7 +6,7 @@ export class AuthDatasourceImpl implements AuthDatasource {
 
     async checkStatus(): Promise<AuthUser> {
         try {
-            const url = '/check-status';
+            const url = '/auth/check-status';
             const { data } = await this.api.get(url);
             const response = AuthUserSchema.safeParse(data['data']);
             if (response.success) {
@@ -25,9 +25,10 @@ export class AuthDatasourceImpl implements AuthDatasource {
 
     async login(payload: LoginForm): Promise<AuthUser> {
         try {
-            const url = '/login';
+            const url = '/auth/login';
             const { data } = await this.api.post(url, payload);
             const response = AuthUserSchema.safeParse(data['data']);
+
             if (response.success) {
                 return response.data;
             }

@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/config/config";
+import { CustomSideBar } from "@/features/shared/shared";
 
 export function ProtectedLayout() {
     const isSignedIn = useSelector((state: RootState) => state.auth.isSignedIn);
@@ -10,8 +11,14 @@ export function ProtectedLayout() {
     }
 
     return (
-        <main className="h-screen w-full overflow-y-auto p-6">
-            <Outlet />
+        <main className="h-screen grid grid-cols-[auto_1fr] overflow-hidden">
+            <aside className="bg-gray-900 text-white h-full">
+                <CustomSideBar />
+            </aside>
+
+            <section className="h-full w-full overflow-y-auto p-6">
+                <Outlet />
+            </section>
         </main>
     );
 }
