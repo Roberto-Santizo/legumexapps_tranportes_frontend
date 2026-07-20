@@ -31,33 +31,42 @@ export function Login() {
 
     const onSubmit = (data: LoginForm) => mutate(data);
     return (
-        <div className="grid place-items-center h-screen">
-            <div className="flex flex-col w-1/4">
-                <form className="flex flex-col justify-center space-y-6 shadow-xl p-6 bg-white" onSubmit={handleSubmit(onSubmit)}>
-                    <h1 className="text-2xl font-bold text-center mb-5">Iniciar Sesión</h1>
+        <div className="w-full max-w-sm px-4">
+            <form
+                className="flex flex-col gap-6 rounded-2xl bg-white p-8 shadow-sm"
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <div className="text-center">
+                    <h1 className="text-xl font-semibold text-gray-900">Iniciar Sesión</h1>
+                    <p className="mt-1 text-sm text-gray-500">Panel Administrativo</p>
+                </div>
 
-                    <TextFormField<LoginForm>
-                        name="email"
-                        label="Correo Electrónico"
-                        placeholder="Ingrese su correo electrónico"
-                        type="email"
-                        errorMessage={errors.email?.message}
-                        register={register}
-                        validation={{ required: 'El correo electrónico es requerido' }}
-                    />
+                <TextFormField<LoginForm>
+                    name="email"
+                    label="Correo Electrónico"
+                    placeholder="Ingrese su correo electrónico"
+                    type="email"
+                    errorMessage={errors.email?.message}
+                    register={register}
+                    validation={{ required: 'El correo electrónico es requerido' }}
+                />
 
-                    <PasswordFormField<LoginForm>
-                        name="password"
-                        label="Contraseña"
-                        placeholder="Contraseña"
-                        errorMessage={errors.password?.message}
-                        register={register}
-                        validation={{ required: 'La contraseña es requerida' }}
-                    />
+                <PasswordFormField<LoginForm>
+                    name="password"
+                    label="Contraseña"
+                    placeholder="Contraseña"
+                    errorMessage={errors.password?.message}
+                    register={register}
+                    validation={{ required: 'La contraseña es requerida' }}
+                />
 
-                    <CustomFilledButton label={isPending ? 'Iniciando sesión' : 'Iniciar Sesión'} type="submit" disabled={isPending}/>
-                </form>
-            </div>
+                <CustomFilledButton
+                    label={isPending ? 'Iniciando sesión' : 'Iniciar Sesión'}
+                    type="submit"
+                    disabled={isPending}
+                    fullWitdh
+                />
+            </form>
         </div>
     )
 }
