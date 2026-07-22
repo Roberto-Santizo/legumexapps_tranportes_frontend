@@ -2,7 +2,7 @@ import { MyVehiclesDatasourceImpl, MyVehiclesRepositoryImpl, type MyVehicle, typ
 import api from "@/config/http/axios";
 
 export class MyVehiclesProvider {
-    constructor(private repository: MyVehiclesRepository) {}
+    constructor(private repository: MyVehiclesRepository) { }
 
     addVehicleToCarrier(payload: MyVehicleForm, carrierCode: string): Promise<string> {
         return this.repository.addVehicleToCarrier(payload, carrierCode);

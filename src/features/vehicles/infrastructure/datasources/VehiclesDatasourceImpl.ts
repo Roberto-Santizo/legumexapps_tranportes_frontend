@@ -26,9 +26,14 @@ export class VehiclesDatasourceImpl implements VehiclesDatasource {
 
     async getVehicles(): Promise<Vehicle[]> {
         try {
+            const { data } = await this.api.get(this.url);
+            const response = z.array(VehicleSchema).safeParse(data['data']);
+
+            if (response.success) {
+                return response.data;
+            }
 
             throw new Error("Información no válida");
-
         } catch (error) {
             if (isAxiosError(error)) throw new Error(error.response?.data.message);
 

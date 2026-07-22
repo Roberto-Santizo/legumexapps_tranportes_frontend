@@ -10,5 +10,5 @@ export type MyVehicleForm = {
     max_weight: number;
     fuel_type: string;
     image: string;
-    file: File;
+    file: File[];
 }

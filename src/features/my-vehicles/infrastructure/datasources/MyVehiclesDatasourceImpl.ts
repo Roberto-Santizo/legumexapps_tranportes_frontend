@@ -30,7 +30,6 @@ export class MyVehiclesDatasourceImpl implements MyVehiclesDatasource {
             const { data } = await this.api.get(url);
             const response = z.array(MyVehicleSchema).safeParse(data['data']);
 
-            console.log(response);
             if (response.success) {
                 return response.data;
             }
