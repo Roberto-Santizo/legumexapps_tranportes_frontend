@@ -5,6 +5,7 @@ import { Dashboard } from "@/features/dashboard/dashboard";
 import { Login } from "@/features/auth/auth";
 import { NotFound, ProtectedLayout, PublicLayout } from "@/features/shared/shared";
 import { Profile } from "@/features/profile/profile";
+import { CreateZone, IndexZones, ShowZone, UpdateZone } from "@/features/zones/zones";
 
 export default function AppRouter() {
     return (
@@ -39,6 +40,13 @@ export default function AppRouter() {
                     <Route path="/vehiculos-marcas/crear" element={<CreateBrand />} />
                     <Route path="/vehiculos-marcas/:id" element={<ShowBrand />} />
                     <Route path="/vehiculos-marcas/:id/editar" element={<UpdateBrand />} />
+                </Route>
+
+                <Route element={<ProtectedLayout />}>
+                    <Route path="/zonas" element={<IndexZones />} />
+                    <Route path="/zonas/crear" element={<CreateZone />} />
+                    <Route path="/zonas/:id" element={<ShowZone />} />
+                    <Route path="/zonas/:id/editar" element={<UpdateZone />} />
                 </Route>
             </Routes>
         </BrowserRouter>
