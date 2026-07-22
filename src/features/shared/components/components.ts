@@ -1,4 +1,5 @@
 export * from './CustomFilledButton';
+export * from './CustomHeader';
 export * from './CustomNavLink';
 export * from './CustomSidebar';
 export * from './PasswordFormField';

@@ -1,7 +1,6 @@
 import { Mail, Shield, User } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/config/config";
-import { Title } from "@/features/shared/shared";
 
 export function Profile() {
   const user = useSelector((state: RootState) => state.auth.user)!;
@@ -11,8 +10,6 @@ export function Profile() {
   return (
     <div className="min-h-[calc(100vh-80px)] bg-gray-50 p-6">
       <div className="mx-auto max-w-4xl">
-        <Title title="Mi Perfil" subtitle="Consulta tu información personal y los datos de tu cuenta" />
-
         <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
           <div className="h-32 bg-linear-to-r from-emerald-500 via-emerald-600 to-green-600" />
           <div className="px-8 pb-8">

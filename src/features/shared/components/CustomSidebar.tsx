@@ -1,21 +1,15 @@
 import { CustomNavLink } from "@/features/shared/shared";
-import { logout } from "@/features/auth/auth";
-import { Car, Home, LogOut, Map } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "@/config/config";
+import { Car, Home, Map } from "lucide-react";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/config/config";
 import { NavLink } from "react-router-dom";
 
 export function CustomSideBar() {
   const user = useSelector((state: RootState) => state.auth.user)!;
-  const dispatch = useDispatch<AppDispatch>();
-
-  const onLogout = () => {
-    dispatch(logout());
-  }
 
   return (
-    <aside className="flex h-screen w-72 flex-col border-r border-gray-200 bg-white">
-      <div className="flex h-20 items-center px-6">
+    <aside className="flex h-screen w-72 flex-col border-r border-gray-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+      <div className="flex h-16 items-center border-b border-gray-200 px-6 dark:border-slate-800">
         <img
           src="https://legumexappsapi-storage.s3.us-east-1.amazonaws.com/resources/LOGO_LX_V2.png"
           alt="Logo"
@@ -23,46 +17,47 @@ export function CustomSideBar() {
         />
 
         <div className="ml-3">
-          <h1 className="font-semibold text-gray-900">
+          <h1 className="font-semibold text-gray-900 dark:text-slate-100">
             Transportes
           </h1>
 
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-500 dark:text-slate-400">
             Plataforma de Transportes
           </p>
         </div>
       </div>
 
-      <nav className="flex-1 overflow-y-auto px-4">
-        <ul className="space-y-3 pb-4">
+      <nav className="flex-1 overflow-y-auto px-4 pt-6">
+        <p className="px-4 pb-2 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+          Menú
+        </p>
+
+        <ul className="space-y-1 pb-4">
           <CustomNavLink to="/dashboard" text="Dashboard" icon={<Home />} />
           <CustomNavLink to="/vehiculos-marcas" text="Marcas de Vehículo" icon={<Car />} />
           <CustomNavLink to="/viajes" text="Viajes" icon={<Map />} />
         </ul>
       </nav>
 
-      <div className="border-t border-gray-200 p-4">
-        <div className="flex items-center gap-3 rounded-xl p-2">
-          <NavLink to={'/perfil'}>
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-600">
-              {user.name[0]}
-            </div>
-          </NavLink>
+      <div className="border-t border-gray-200 p-4 dark:border-slate-800">
+        <NavLink
+          to={'/perfil'}
+          className="flex items-center gap-3 rounded-xl p-2 transition hover:bg-gray-50 dark:hover:bg-slate-800"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
+            {user.name[0]}
+          </div>
 
           <div className="flex-1 overflow-hidden">
-            <p className="truncate text-sm font-medium text-gray-900">
+            <p className="truncate text-sm font-medium text-gray-900 dark:text-slate-100">
               {user.fullName}
             </p>
 
-            <p className="truncate text-xs text-gray-500">
+            <p className="truncate text-xs text-gray-500 dark:text-slate-400">
               {user.role}
             </p>
           </div>
-
-          <button className="rounded-lg p-2 text-gray-500 transition hover:bg-gray-100 hover:text-red-500">
-            <LogOut onClick={() => onLogout()} size={18} />
-          </button>
-        </div>
+        </NavLink>
       </div>
     </aside>
   );

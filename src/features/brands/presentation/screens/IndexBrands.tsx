@@ -11,8 +11,7 @@ export function IndexBrands() {
   if (isLoading) return <LoadingTable />
   if (data) return (
     <div className="space-y-5">
-      <Title title="Marcas de Vehículos" subtitle="Marcas de vehículos registrados" />
-
+      <Title title="Marcas de Vehículos" subtitle="Marcas de Vehículos Disponibles"/>
       <Table >
         <Thead >
           <Th text="Marca" />

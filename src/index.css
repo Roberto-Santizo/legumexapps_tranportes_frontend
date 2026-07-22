@@ -1,11 +1,13 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 .text_form_field {
-    @apply w-full outline-none px-3 py-2 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 hover:border-gray-300;
+    @apply w-full outline-none px-3 py-2 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 hover:border-gray-300 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500 dark:hover:border-slate-600;
 }
 
 .text_form_field_error {
-    @apply w-full outline-none px-3 py-2 rounded-lg border border-red-300 bg-white text-gray-900 placeholder-red-300 shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-red-500/20 focus:border-red-500 hover:border-red-400;
+    @apply w-full outline-none px-3 py-2 rounded-lg border border-red-300 bg-white text-gray-900 placeholder-red-300 shadow-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-red-500/20 focus:border-red-500 hover:border-red-400 dark:bg-slate-800 dark:text-slate-100;
 }
 
 .main_title {
@@ -25,7 +27,7 @@
 }
 
 .table-wrapper {
-    @apply overflow-auto rounded-2xl bg-white shadow-sm border border-slate-200;
+    @apply overflow-auto rounded-2xl bg-white shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800;
 }
 
 .table {
@@ -33,25 +35,25 @@
 }
 
 .thead {
-    @apply bg-slate-50;
+    @apply bg-slate-50 dark:bg-slate-800/60;
 }
 
 .thead-th {
-    @apply px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500;
+    @apply px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400;
 }
 
 .tbody {
-    @apply divide-y divide-slate-100;
+    @apply divide-y divide-slate-100 dark:divide-slate-800;
 }
 
 .tbody-tr {
-    @apply hover:bg-slate-50 transition-colors;
+    @apply hover:bg-slate-50 transition-colors dark:hover:bg-slate-800/60;
 }
 
 .tbody-td {
-    @apply px-6 py-4 text-slate-700;
+    @apply px-6 py-4 text-slate-700 dark:text-slate-300;
 }
 
 .input-filter {
-    @apply w-80 rounded-xl border border-slate-300 bg-slate-50 py-2 pl-10 pr-4 text-sm transition-all placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-200;
+    @apply w-80 rounded-xl border border-slate-300 bg-slate-50 py-2 pl-10 pr-4 text-sm transition-all placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:focus:bg-slate-800;
 }

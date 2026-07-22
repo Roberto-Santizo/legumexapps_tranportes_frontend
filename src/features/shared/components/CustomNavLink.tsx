@@ -16,8 +16,8 @@ export function CustomNavLink({ text, icon, to }: Props) {
             text-sm font-medium
             transition-all duration-200 ease-out
             ${isActive
-                    ? "bg-blue-50 text-blue-700 shadow-sm"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    ? "bg-blue-50 text-blue-700 shadow-sm dark:bg-blue-500/10 dark:text-blue-400"
+                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100"
                 }
         `
             }
