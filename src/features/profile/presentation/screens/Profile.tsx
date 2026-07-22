@@ -8,7 +8,7 @@ export function Profile() {
   const initials = `${user.name?.charAt(0) ?? ""}${user.lastName?.charAt(0) ?? ""}`.toUpperCase();
 
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-gray-50 p-6">
+    <div className="min-h-[calc(100vh-80px)] p-6">
       <div className="mx-auto max-w-4xl">
         <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm">
           <div className="h-32 bg-linear-to-r from-emerald-500 via-emerald-600 to-green-600" />

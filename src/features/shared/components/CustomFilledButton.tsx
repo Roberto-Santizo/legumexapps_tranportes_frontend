@@ -17,7 +17,7 @@ export function CustomFilledButton({ label, type, onClick, icon, disabled = fals
                 ${fullWitdh ? "w-full" : ""}
                 ${hasIcon ? "inline-flex items-center justify-center gap-2" : ""}
                 rounded-xl
-                bg-emerald-600
+                bg-blue-600
                 px-5
                 py-2.5
                 text-sm
@@ -26,23 +26,23 @@ export function CustomFilledButton({ label, type, onClick, icon, disabled = fals
                 shadow-sm
                 transition-all
                 duration-200
-                hover:bg-emerald-700
+                hover:bg-blue-700
                 hover:shadow-md
                 active:scale-[0.98]
                 disabled:cursor-not-allowed
-                disabled:bg-emerald-400
+                disabled:bg-blue-400
                 disabled:shadow-none
                 focus:outline-none
                 focus:ring-2
-                focus:ring-emerald-500
+                focus:ring-blue-500
                 focus:ring-offset-2
                 cursor-pointer
                 ${className}
             `;
     return (
         <button disabled={disabled} type={type} className={classNameComponent} onClick={onClick ? () => onClick() : () => { }}>
-            {icon ? (icon) : (<></>)}
-            {isLoading ? <SpinnerComponent /> : (<p className="text-white font-semibold">{label}</p>)}
+            {(icon && !isLoading) ? (icon) : (<></>)}
+            {isLoading ? <SpinnerComponent /> : (<p className="text-white font-semibold uppercase">{label}</p>)}
         </button>
     )
 }

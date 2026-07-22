@@ -22,7 +22,7 @@ export function CustomHeader() {
 
   return (
     <header className="flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-6 dark:border-slate-800 dark:bg-slate-900">
-      <p className="font-bold">Bienvenido, {user.fullName}</p>
+      <p className="font-bold dark:text-white">Bienvenido, {user.fullName}</p>
 
       <div className="flex items-center gap-2">
         <button
