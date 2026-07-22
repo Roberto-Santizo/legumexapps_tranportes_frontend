@@ -14,10 +14,4 @@ export class VehiclesRepositoryImpl implements VehiclesRepository {
     getVehiclesByBrandId(brandId: string): Promise<Vehicle[]> {
         return this.datasource.getVehiclesByBrandId(brandId);    
     }
-
-    getVehiclesByCarrierCode(carrierCode: string): Promise<Vehicle[]> {
-        return this.datasource.getVehiclesByCarrierCode(carrierCode);    
-    }
-
-
 }

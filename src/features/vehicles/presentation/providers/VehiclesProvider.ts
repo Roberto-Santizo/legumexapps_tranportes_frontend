@@ -15,11 +15,6 @@ class VehiclesProvider {
     getVehiclesByBrandId(brandId: string): Promise<Vehicle[]> {
         return this.repository.getVehiclesByBrandId(brandId);
     }
-
-    getVehiclesByCarrierCode(carrierCode: string): Promise<Vehicle[]> {
-        return this.repository.getVehiclesByCarrierCode(carrierCode);
-    }
-
 }
 
 const datasource = new VehiclesDatasourceImpl(api);

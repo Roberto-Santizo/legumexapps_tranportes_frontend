@@ -1,14 +1,15 @@
 import { ApiResponseSchema } from "@/features/shared/shared";
-import { VehicleSchema, type Vehicle, type VehicleForm, type VehiclesDatasource } from "@/features/vehicles/vehicles";
 import { isAxiosError, type AxiosInstance } from "axios";
+import { MyVehicleSchema, type MyVehicle, type MyVehicleForm, type MyVehiclesDatasource } from "@/features/my-vehicles/my-vehicles";
 import { z } from "zod";
 
-export class VehiclesDatasourceImpl implements VehiclesDatasource {
-    constructor(private api: AxiosInstance, private url = '/vehicles') { }
+export class MyVehiclesDatasourceImpl implements MyVehiclesDatasource {
+    constructor(private api: AxiosInstance) { }
 
-    async createVehicle(payload: VehicleForm): Promise<string> {
+    async addVehicleToCarrier(payload: MyVehicleForm, carrierCode: string): Promise<string> {
         try {
-            const { data } = await this.api.post(this.url, payload);
+            const url = `/carriers/addVehicle/${carrierCode}`;
+            const { data } = await this.api.post(url, payload);
             const response = ApiResponseSchema.safeParse(data);
 
             if (response.success) {
@@ -20,29 +21,16 @@ export class VehiclesDatasourceImpl implements VehiclesDatasource {
             if (isAxiosError(error)) throw new Error(error.response?.data.message);
 
             throw new Error("Error no controlado");
-
         }
     }
 
-    async getVehicles(): Promise<Vehicle[]> {
+    async getCarrierVehicles(carrierCode: string): Promise<MyVehicle[]> {
         try {
-
-            throw new Error("Información no válida");
-
-        } catch (error) {
-            if (isAxiosError(error)) throw new Error(error.response?.data.message);
-
-            throw new Error("Error no controlado");
-
-        }
-    }
-
-    async getVehiclesByBrandId(brandId: string): Promise<Vehicle[]> {
-        try {
-            const url = `${this.url}/getVehiclesByBrand/${brandId}`
+            const url = `/carriers/getVehicles/${carrierCode}`;
             const { data } = await this.api.get(url);
-            const response = z.array(VehicleSchema).safeParse(data['data']);
+            const response = z.array(MyVehicleSchema).safeParse(data['data']);
 
+            console.log(response);
             if (response.success) {
                 return response.data;
             }
@@ -52,7 +40,7 @@ export class VehiclesDatasourceImpl implements VehiclesDatasource {
             if (isAxiosError(error)) throw new Error(error.response?.data.message);
 
             throw new Error("Error no controlado");
-
         }
     }
+
 }

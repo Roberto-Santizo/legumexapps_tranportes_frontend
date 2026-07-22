@@ -1,5 +1,5 @@
 import { CustomNavLink } from "@/features/shared/shared";
-import { Car, Home, Map } from "lucide-react";
+import { Car, CarFront, Home, Map } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/config/config";
 import { NavLink } from "react-router-dom";
@@ -34,6 +34,7 @@ export function CustomSideBar() {
 
         <ul className="space-y-1 pb-4">
           <CustomNavLink to="/dashboard" text="Dashboard" icon={<Home />} />
+          <CustomNavLink to="/mis-vehiculos" text="Mis Vehículos" icon={<CarFront />} />
           <CustomNavLink to="/vehiculos-marcas" text="Marcas de Vehículo" icon={<Car />} />
           <CustomNavLink to="/viajes" text="Viajes" icon={<Map />} />
         </ul>
