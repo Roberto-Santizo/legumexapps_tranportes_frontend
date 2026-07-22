@@ -11,6 +11,10 @@ export class MyVehiclesProvider {
     getCarrierVehicles(carrierCode: string): Promise<MyVehicle[]> {
         return this.repository.getCarrierVehicles(carrierCode);
     }
+
+    updateVehicleStatus(id: string){
+        return this.repository.updateVehicleStatus(id);
+    }
 }
 
 const datasource = new MyVehiclesDatasourceImpl(api);

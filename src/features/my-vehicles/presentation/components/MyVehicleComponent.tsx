@@ -3,9 +3,10 @@ import type { MyVehicle } from "@/features/my-vehicles/my-vehicles";
 
 type Props = {
     myVehicle: MyVehicle;
+    onUpdateStatus: (id: string) => void;
 };
 
-export function MyVehicleComponent({ myVehicle }: Props) {
+export function MyVehicleComponent({ myVehicle, onUpdateStatus }: Props) {
     const imageUrl = `${import.meta.env.VITE_BUCKET_URL}/${myVehicle.image}`;
 
     return (
@@ -76,7 +77,7 @@ export function MyVehicleComponent({ myVehicle }: Props) {
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-3 rounded-2xl bg-gray-50 p-4 dark:bg-slate-800">
+                    <div className="flex items-center gap-3 rounded-2xl bg-gray-50 hover:bg-gray-200 p-4 dark:bg-slate-800 cursor-pointer dark:hover:bg-slate-600" onClick={() => onUpdateStatus(`${myVehicle.id}`)}>
                         <Car className="h-5 w-5 text-gray-500 dark:text-slate-400" />
                         <div>
                             <p className="text-xs text-gray-500 dark:text-slate-400">

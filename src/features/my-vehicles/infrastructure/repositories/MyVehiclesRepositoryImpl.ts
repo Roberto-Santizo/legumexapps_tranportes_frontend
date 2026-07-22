@@ -3,6 +3,10 @@ import type { MyVehicle, MyVehicleForm, MyVehiclesDatasource, MyVehiclesReposito
 export class MyVehiclesRepositoryImpl implements MyVehiclesRepository {
     constructor(private datasource: MyVehiclesDatasource) { }
 
+    updateVehicleStatus(id: string): Promise<string> {
+        return this.datasource.updateVehicleStatus(id);
+    }
+
     addVehicleToCarrier(payload: MyVehicleForm, carrierCode: string): Promise<string> {
         return this.datasource.addVehicleToCarrier(payload, carrierCode);
     }

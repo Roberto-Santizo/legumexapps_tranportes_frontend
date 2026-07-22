@@ -6,6 +6,24 @@ import { z } from "zod";
 export class MyVehiclesDatasourceImpl implements MyVehiclesDatasource {
     constructor(private api: AxiosInstance) { }
 
+    async updateVehicleStatus(id: string): Promise<string> {
+        try {
+            const url = `/carriers/updateVehicleStatus/${id}`;
+            const { data } = await this.api.post(url);
+            const response = ApiResponseSchema.safeParse(data);
+
+            if (response.success) {
+                return response.data.message;
+            }
+
+            throw new Error("Información no válida");
+        } catch (error) {
+            if (isAxiosError(error)) throw new Error(error.response?.data.message);
+
+            throw new Error("Error no controlado");
+        }
+    }
+
     async addVehicleToCarrier(payload: MyVehicleForm, carrierCode: string): Promise<string> {
         try {
             const url = `/carriers/addVehicle/${carrierCode}`;
