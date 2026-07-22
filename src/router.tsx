@@ -1,10 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Login } from "@/features/auth/auth";
 import { NotFound, ProtectedLayout, PublicLayout } from "@/features/shared/shared";
-
-function Dashboard() {
-    return <h1 className="text-3xl font-bold">Dashboard</h1>;
-}
+import { Dashboard } from "@/features/dashboard/dashboard";
+import { Profile } from "@/features/profile/profile";
 
 export default function AppRouter() {
     return (
@@ -21,6 +19,10 @@ export default function AppRouter() {
 
                 <Route element={<ProtectedLayout />}>
                     <Route path="/dashboard" element={<Dashboard />} />
+                </Route>
+
+                <Route element={<ProtectedLayout />}>
+                    <Route path="/perfil" element={<Profile />} />
                 </Route>
             </Routes>
         </BrowserRouter>

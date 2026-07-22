@@ -3,6 +3,7 @@ import { logout } from "@/features/auth/auth";
 import { Home, LogOut, Map } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "@/config/config";
+import { NavLink } from "react-router-dom";
 
 export function CustomSideBar() {
   const user = useSelector((state: RootState) => state.auth.user)!;
@@ -41,9 +42,11 @@ export function CustomSideBar() {
 
       <div className="border-t border-gray-200 p-4">
         <div className="flex items-center gap-3 rounded-xl p-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-600">
-            {user.name[0]}
-          </div>
+          <NavLink to={'/perfil'}>
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-semibold text-blue-600">
+              {user.name[0]}
+            </div>
+          </NavLink>
 
           <div className="flex-1 overflow-hidden">
             <p className="truncate text-sm font-medium text-gray-900">
