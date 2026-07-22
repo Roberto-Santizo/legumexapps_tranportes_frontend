@@ -1,3 +1,4 @@
+export * from './CustomFileFormField';
 export * from './CustomFilledButton';
 export * from './CustomForm';
 export * from './CustomHeader';
@@ -16,3 +17,4 @@ export * from './Title';
 export * from './Tr';
 export * from './LoadingTable';
 export * from './CustomTableLink';
+export * from './Modal';
