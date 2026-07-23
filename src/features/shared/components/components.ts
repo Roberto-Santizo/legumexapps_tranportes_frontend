@@ -20,3 +20,4 @@ export * from './CustomTableLink';
 export * from './Modal';
 export * from './GoogleMap';
 export * from './MapFormField';
+export * from './BackLink';

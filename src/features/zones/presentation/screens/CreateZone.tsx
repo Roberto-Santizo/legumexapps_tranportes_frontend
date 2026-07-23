@@ -2,7 +2,7 @@ import { ZoneFormComponent, zonesRepositoryProvider, type ZoneForm } from "@/fea
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { CustomFilledButton, CustomForm, Title, useNotification } from "@/features/shared/shared";
+import { BackLink, CustomFilledButton, CustomForm, Title, useNotification } from "@/features/shared/shared";
 
 export function CreateZone() {
   const notification = useNotification();
@@ -29,7 +29,9 @@ export function CreateZone() {
   const onSubmit = (data: ZoneForm) => mutate(data);
 
   return (
-    <div>
+    <div className="space-y-5">
+      <BackLink link="/zonas" text="Volver a zonas" />
+
       <Title title="Crear Zona" subtitle="Formulario para la creación de zonas" />
 
       <section>

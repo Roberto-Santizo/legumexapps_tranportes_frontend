@@ -1,4 +1,4 @@
-import { CustomFilledButton, CustomForm, Title, useNotification } from "@/features/shared/shared";
+import { BackLink, CustomFilledButton, CustomForm, Title, useNotification } from "@/features/shared/shared";
 import { useForm } from "react-hook-form";
 import { brandsRepositoryProvider, CreateBrandForm, type BrandForm } from "@/features/brands/brands";
 import { useMutation } from "@tanstack/react-query";
@@ -28,7 +28,9 @@ export function CreateBrand() {
   const onSubmit = (payload: BrandForm) => mutate(payload);
 
   return (
-    <div>
+    <div className="space-y-5">
+      <BackLink link="/vehiculos-marcas" text="Volver a marcas" />
+
       <Title title="Crear Marca de Vehículo" subtitle="Formulario para la creación de marcas de vehículo" />
 
       <section>

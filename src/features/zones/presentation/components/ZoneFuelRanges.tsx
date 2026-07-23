@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ModalCreateFuelRange, zonesRepositoryProvider } from "@/features/zones/zones";
-import { Fuel, PlusIcon, TrashIcon } from "lucide-react";
+import { PlusIcon, TrashIcon } from "lucide-react";
 import { CustomFilledButton, CustomTableLink, Table, Tbody, Td, Th, Thead, Tr, useNotification } from "@/features/shared/shared";
 
 type Props = {
@@ -32,14 +32,7 @@ export function ZoneFuelRanges({ zoneId }: Props) {
         <div className="mt-8 space-y-4">
             <div className="rounded-2xl bg-gray-50 p-4 dark:bg-slate-800">
                 <div className="flex items-center gap-3 justify-between">
-                    <Fuel className="h-5 w-5 text-gray-500 dark:text-slate-400" />
-
-                    <div>
-                        <p className="text-sm text-gray-500 dark:text-slate-400">
-                            Rangos de Gasolina
-                        </p>
-                    </div>
-
+                    <p className="font-semibold">Rangos de Gasolina</p>
                     <CustomFilledButton
                         label="Agregar"
                         type="button"

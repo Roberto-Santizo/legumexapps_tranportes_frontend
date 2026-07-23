@@ -1,5 +1,5 @@
 import { brandsRepositoryProvider } from "@/features/brands/brands";
-import { CustomFilledButton, Loading, Title } from "@/features/shared/shared";
+import { BackLink, CustomFilledButton, Loading, Title } from "@/features/shared/shared";
 import { ModalCreateVehicle } from "@/features/vehicles/presentation/components/ModalCreateVehicle";
 import { PlusIcon } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,7 +17,10 @@ export function ShowBrand() {
 
   if (isLoading) return <Loading />
   if (data) return (
-    <div>
+    <div className="space-y-5">
+      <BackLink link="/vehiculos-marcas" text="Volver a marcas" />
+
+
       <div className="flex justify-between items-center">
         <Title title={data.name} subtitle="Marca de Vehículo" />
         <CustomFilledButton

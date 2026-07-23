@@ -1,5 +1,5 @@
 import { brandsRepositoryProvider, CreateBrandForm, type BrandForm } from "@/features/brands/brands"
-import { CustomFilledButton, CustomForm, Loading, Title, useNotification } from "@/features/shared/shared";
+import { BackLink, CustomFilledButton, CustomForm, Loading, Title, useNotification } from "@/features/shared/shared";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -44,7 +44,9 @@ export function UpdateBrand() {
 
   if (isLoading) return <Loading />
   if (data) return (
-    <div>
+    <div className="space-y-5">
+      <BackLink link="/vehiculos-marcas" text="Volver a marcas" />
+
       <Title title="Actualizar marca de vehículo" subtitle="Formulario de Actualización" />
 
       <section>
