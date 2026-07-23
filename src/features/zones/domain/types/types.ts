@@ -8,3 +8,5 @@ export type ZoneForm = {
     name: string;
     coordinates: number[][];
 }
+
+export type FuelRangeForm = Pick<FuelRange, 'fuel_range'>;

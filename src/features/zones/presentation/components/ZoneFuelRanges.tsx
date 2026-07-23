@@ -1,13 +1,16 @@
-import { Fuel } from "lucide-react";
-import { Table, Tbody, Td, Th, Thead, Tr } from "@/features/shared/shared";
 import { useQuery } from "@tanstack/react-query";
-import { zonesRepositoryProvider } from "@/features/zones/zones";
+import { useNavigate } from "react-router-dom";
+import { ModalCreateFuelRange, zonesRepositoryProvider } from "@/features/zones/zones";
+import { Fuel, PlusIcon } from "lucide-react";
+import { CustomFilledButton, Table, Tbody, Td, Th, Thead, Tr } from "@/features/shared/shared";
 
 type Props = {
     zoneId: string;
 };
 
 export function ZoneFuelRanges({ zoneId }: Props) {
+    const navigate = useNavigate();
+
     const { data: ranges, isLoading } = useQuery({
         queryKey: ["getFuelRangesByZone", zoneId],
         queryFn: () => zonesRepositoryProvider.getFuelPricesByZone(zoneId),
@@ -16,7 +19,7 @@ export function ZoneFuelRanges({ zoneId }: Props) {
     return (
         <div className="mt-8 space-y-4">
             <div className="rounded-2xl bg-gray-50 p-4 dark:bg-slate-800">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 justify-between">
                     <Fuel className="h-5 w-5 text-gray-500 dark:text-slate-400" />
 
                     <div>
@@ -24,6 +27,13 @@ export function ZoneFuelRanges({ zoneId }: Props) {
                             Rangos de Gasolina
                         </p>
                     </div>
+
+                    <CustomFilledButton
+                        label="Agregar"
+                        type="button"
+                        icon={<PlusIcon />}
+                        onClick={() => navigate('?addFuelRange=true')}
+                    />
                 </div>
             </div>
 
@@ -48,6 +58,8 @@ export function ZoneFuelRanges({ zoneId }: Props) {
                     </Table>
                 )}
             </div>
+
+            <ModalCreateFuelRange />
         </div>
     );
 }

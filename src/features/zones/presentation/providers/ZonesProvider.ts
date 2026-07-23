@@ -1,6 +1,6 @@
 import api from "@/config/http/axios";
 import { ZonesDatasourceImpl } from "@/features/zones/infrastructure/infrastructure";
-import { ZonesRepositoryImpl, type ZoneForm, type ZonesRepository } from "@/features/zones/zones";
+import { ZonesRepositoryImpl, type FuelRangeForm, type ZoneForm, type ZonesRepository } from "@/features/zones/zones";
 
 export class ZonesProvider {
     constructor(private repository: ZonesRepository) { }
@@ -19,6 +19,10 @@ export class ZonesProvider {
 
     createZone(payload: ZoneForm) {
         return this.repository.createZone(payload);
+    }
+
+    createFuelRange(payload: FuelRangeForm, zoneId: string): Promise<string> {
+        return this.repository.createFuelRange(payload, zoneId);
     }
 }
 
