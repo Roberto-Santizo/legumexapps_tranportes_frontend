@@ -40,3 +40,15 @@ export const setQueryParams = <T extends Record<string, unknown>>(filters: T) =>
     const params = new URLSearchParams(Object.entries(filters).filter(([, value]) => value != null && value !== '').map(([key, value]) => [key, String(value)]));
     return params;
 }
+
+export const getCoordinatesCenter = (coordinates: number[][]) => {
+    const total = coordinates.reduce((acc, [lng, lat]) => ({
+        lat: acc.lat + lat,
+        lng: acc.lng + lng,
+    }), { lat: 0, lng: 0 });
+
+    return {
+        lat: total.lat / coordinates.length,
+        lng: total.lng / coordinates.length,
+    };
+}

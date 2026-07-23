@@ -18,3 +18,4 @@ export * from './Tr';
 export * from './LoadingTable';
 export * from './CustomTableLink';
 export * from './Modal';
+export * from './GoogleMap';
