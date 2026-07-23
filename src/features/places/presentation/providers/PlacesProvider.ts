@@ -1,4 +1,5 @@
-import type { Place, PlacesRepository, Route } from "@/features/places/places";
+import api from "@/config/http/axios";
+import { PlacesDatasourceImpl, PlacesRepositoryImpl, type Place, type PlacesRepository, type Route } from "@/features/places/places";
 
 export class PlacesProvider {
     constructor(private repository: PlacesRepository) { }
@@ -16,3 +17,7 @@ export class PlacesProvider {
     }
 
 }
+
+const datasource = new PlacesDatasourceImpl(api);
+const repository = new PlacesRepositoryImpl(datasource);
+export const placesRepositoryProvider = new PlacesProvider(repository);

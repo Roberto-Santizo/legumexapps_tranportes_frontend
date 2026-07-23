@@ -37,7 +37,7 @@ export function CustomSideBar() {
           <CustomNavLink to="/mis-vehiculos" text="Mis Vehículos" icon={<CarFront />} />
           <CustomNavLink to="/zonas" text="Zonas" icon={<MapPin />} />
           <CustomNavLink to="/vehiculos-marcas" text="Marcas de Vehículo" icon={<Car />} />
-          <CustomNavLink to="/viajes" text="Viajes" icon={<Map />} />
+          <CustomNavLink to="/mis-viajes" text="Viajes" icon={<Map />} />
         </ul>
       </nav>
 

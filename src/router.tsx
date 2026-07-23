@@ -6,6 +6,7 @@ import { Login } from "@/features/auth/auth";
 import { NotFound, ProtectedLayout, PublicLayout } from "@/features/shared/shared";
 import { Profile } from "@/features/profile/profile";
 import { CreateZone, IndexZones, ShowZone, UpdateZone } from "@/features/zones/zones";
+import { CreateTrip, IndexTrips, ShowTrip } from "./features/trips/trips";
 
 export default function AppRouter() {
     return (
@@ -47,6 +48,12 @@ export default function AppRouter() {
                     <Route path="/zonas/crear" element={<CreateZone />} />
                     <Route path="/zonas/:id" element={<ShowZone />} />
                     <Route path="/zonas/:id/editar" element={<UpdateZone />} />
+                </Route>
+
+                <Route element={<ProtectedLayout />}>
+                    <Route path="/mis-viajes" element={<IndexTrips />} />
+                    <Route path="/mis-viajes/crear" element={<CreateTrip />} />
+                    <Route path="/mis-viajes/:id" element={<ShowTrip />} />
                 </Route>
             </Routes>
         </BrowserRouter>
