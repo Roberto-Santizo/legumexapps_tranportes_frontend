@@ -1,9 +1,27 @@
 import { isAxiosError, type AxiosInstance } from "axios";
 import { z } from 'zod';
-import { ZoneSchema, type Zone, type ZonesDatasource } from "@/features/zones/zones";
+import { FuelRangeSchema, ZoneSchema, type FuelRange, type Zone, type ZonesDatasource } from "@/features/zones/zones";
 
 export class ZonesDatasourceImpl implements ZonesDatasource {
     constructor(private api: AxiosInstance, private url = '/zones') { }
+
+    async getFuelPricesByZone(id: string): Promise<FuelRange[]> {
+       try {
+            const url = `${this.url}/getPricesByZone/${id}`
+            const { data } = await this.api.get(url);
+            const response = z.array(FuelRangeSchema).safeParse(data['data']);
+
+            if (response.success) {
+                return response.data;
+            }
+
+            throw new Error("Información no válida");
+        } catch (error) {
+            if (isAxiosError(error)) throw new Error(error.response?.data.message);
+
+            throw new Error("Error no controlado");
+        }
+    }
 
     async getZones(): Promise<Zone[]> {
         try {

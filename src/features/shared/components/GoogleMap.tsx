@@ -17,19 +17,20 @@ export function GoogleMap({ coordinates }: Props) {
     return (
         <APIProvider apiKey={import.meta.env.VITE_GOOGLE_API_KEY}>
             <Map
-                style={{ width: '100vw', height: '100vh' }}
+                className="h-full w-full"
                 defaultCenter={center}
                 defaultZoom={zoom}
-                gestureHandling='greedy'
+                gestureHandling="greedy"
                 disableDefaultUI
+                mapId={import.meta.env.VITE_GOOGLE_MAP_ID} // opcional
             >
                 {paths && paths.length > 0 && (
                     <Polygon
                         paths={paths}
-                        fillColor={'#0088ff'}
-                        fillOpacity={0.3}
-                        strokeColor={'#0088ff'}
-                        strokeWeight={2}
+                        fillColor="#2563eb"
+                        fillOpacity={0.18}
+                        strokeColor="#2563eb"
+                        strokeWeight={3}
                     />
                 )}
             </Map>

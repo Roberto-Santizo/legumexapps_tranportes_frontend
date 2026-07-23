@@ -4,13 +4,17 @@ import { ZonesRepositoryImpl, type ZonesRepository } from "@/features/zones/zone
 
 export class ZonesProvider {
     constructor(private repository: ZonesRepository) { }
-    
-    getZones(){
+
+    getZones() {
         return this.repository.getZones();
     }
-    
-    getZoneById(id: string){
+
+    getZoneById(id: string) {
         return this.repository.getZoneById(id);
+    }
+
+    getFuelPricesByZone(id: string) {
+        return this.repository.getFuelPricesByZone(id);
     }
 }
 
