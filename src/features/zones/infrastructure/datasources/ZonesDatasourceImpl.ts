@@ -6,6 +6,42 @@ import { ApiResponseSchema } from "@/features/shared/shared";
 export class ZonesDatasourceImpl implements ZonesDatasource {
     constructor(private api: AxiosInstance, private url = '/zones') { }
 
+    async deleteFuelRange(id: string): Promise<string> {
+        try {
+            const url = `${this.url}/removePriceRange/${id}`
+            const { data } = await this.api.delete(url);
+            const response = ApiResponseSchema.safeParse(data);
+
+            if (response.success) {
+                return response.data.message;
+            }
+
+            throw new Error("Información no válida");
+        } catch (error) {
+            if (isAxiosError(error)) throw new Error(error.response?.data.message);
+
+            throw new Error("Error no controlado");
+        }
+    }
+
+    async deleteZone(zoneId: string): Promise<string> {
+        try {
+            const url = `${this.url}/${zoneId}`
+            const { data } = await this.api.delete(url);
+            const response = ApiResponseSchema.safeParse(data);
+
+            if (response.success) {
+                return response.data.message;
+            }
+
+            throw new Error("Información no válida");
+        } catch (error) {
+            if (isAxiosError(error)) throw new Error(error.response?.data.message);
+
+            throw new Error("Error no controlado");
+        }
+    }
+
     async createFuelRange(payload: FuelRangeForm, zoneId: string): Promise<string> {
         try {
             const url = `${this.url}/addPriceRange/${zoneId}`

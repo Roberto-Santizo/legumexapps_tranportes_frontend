@@ -3,6 +3,14 @@ import type { FuelRange, FuelRangeForm, Zone, ZoneForm, ZonesDatasource, ZonesRe
 export class ZonesRepositoryImpl implements ZonesRepository {
     constructor(private datasource: ZonesDatasource) {}
 
+    deleteFuelRange(id: string): Promise<string> {
+       return this.datasource.deleteFuelRange(id);
+    }
+
+    deleteZone(zoneId: string): Promise<string> {
+        return this.datasource.deleteZone(zoneId);
+    }
+
     createFuelRange(payload: FuelRangeForm, zoneId: string): Promise<string> {
         return this.datasource.createFuelRange(payload, zoneId);
     }

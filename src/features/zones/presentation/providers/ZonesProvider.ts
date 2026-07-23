@@ -24,6 +24,14 @@ export class ZonesProvider {
     createFuelRange(payload: FuelRangeForm, zoneId: string): Promise<string> {
         return this.repository.createFuelRange(payload, zoneId);
     }
+
+    deleteZone(zoneId: string) {
+        return this.repository.deleteZone(zoneId);
+    }
+
+    deleteFuelRange(id: string) {
+        return this.repository.deleteFuelRange(id);
+    }
 }
 
 const datasource = new ZonesDatasourceImpl(api);

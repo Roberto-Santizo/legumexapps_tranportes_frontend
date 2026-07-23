@@ -1,17 +1,32 @@
-import { CustomFilledButton, CustomTableLink, Loading, Table, Tbody, Td, Th, Thead, Title, Tr } from "@/features/shared/shared";
-import { EyeIcon, PlusIcon } from "lucide-react";
+import { CustomFilledButton, CustomTableLink, Loading, Table, Tbody, Td, Th, Thead, Title, Tr, useNotification } from "@/features/shared/shared";
+import { EyeIcon, PlusIcon, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { zonesRepositoryProvider } from "@/features/zones/zones";
 
 export function IndexZones() {
   const navigate = useNavigate();
+  const notification = useNotification();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ['getZones'],
     queryFn: () => zonesRepositoryProvider.getZones()
   });
 
+  const { mutate } = useMutation({
+    mutationFn: (id: string) => zonesRepositoryProvider.deleteZone(id),
+    onSuccess: (message) => {
+      notification.success(message);
+      refetch();
+    },
+    onError: (err) => {
+      notification.error(err.message);
+    }
+  });
+
+  const handleDelete = (id: string) => {
+    notification.question('¿Desea eliminar la zona?', 'eliminar', 'Si elimina la zona no se podran realizar viajes a esta región', () => mutate(id));
+  }
 
   if (isLoading) return <Loading />
   if (data) return (
@@ -37,6 +52,7 @@ export function IndexZones() {
               <Td>{zone.name}</Td>
               <Td className="flex gap-5">
                 <CustomTableLink onClick={() => navigate(`/zonas/${zone.id}`)} icon={<EyeIcon />} />
+                <CustomTableLink onClick={() => handleDelete(`${zone.id}`)} icon={<TrashIcon />} />
               </Td>
             </Tr>
           ))}

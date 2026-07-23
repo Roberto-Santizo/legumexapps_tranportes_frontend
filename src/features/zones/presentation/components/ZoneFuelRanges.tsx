@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { ModalCreateFuelRange, zonesRepositoryProvider } from "@/features/zones/zones";
-import { Fuel, PlusIcon } from "lucide-react";
-import { CustomFilledButton, Table, Tbody, Td, Th, Thead, Tr } from "@/features/shared/shared";
+import { Fuel, PlusIcon, TrashIcon } from "lucide-react";
+import { CustomFilledButton, CustomTableLink, Table, Tbody, Td, Th, Thead, Tr, useNotification } from "@/features/shared/shared";
 
 type Props = {
     zoneId: string;
@@ -10,13 +10,25 @@ type Props = {
 
 export function ZoneFuelRanges({ zoneId }: Props) {
     const navigate = useNavigate();
+    const notification = useNotification();
 
-    const { data: ranges, isLoading } = useQuery({
+    const { data: ranges, isLoading, refetch } = useQuery({
         queryKey: ["getFuelRangesByZone", zoneId],
         queryFn: () => zonesRepositoryProvider.getFuelPricesByZone(zoneId),
     });
 
-    return (
+    const { mutate } = useMutation({
+        mutationFn: (id: string) => zonesRepositoryProvider.deleteFuelRange(id),
+        onSuccess: (message) => {
+            notification.success(message);
+            refetch();
+        },
+        onError: (err) => {
+            notification.error(err.message);
+        }
+    });
+
+    if (ranges) return (
         <div className="mt-8 space-y-4">
             <div className="rounded-2xl bg-gray-50 p-4 dark:bg-slate-800">
                 <div className="flex items-center gap-3 justify-between">
@@ -46,12 +58,19 @@ export function ZoneFuelRanges({ zoneId }: Props) {
                     <Table>
                         <Thead>
                             <Th text="Precio" />
+                            <Th text="Acciones" />
                         </Thead>
 
                         <Tbody>
-                            {ranges?.map(range => (
+                            {ranges.map(range => (
                                 <Tr key={range.id}>
                                     <Td>Q {range.fuel_range}</Td>
+                                    <Td>
+                                        <CustomTableLink
+                                            onClick={() => mutate(`${range.id}`)}
+                                            icon={<TrashIcon />}
+                                        />
+                                    </Td>
                                 </Tr>
                             ))}
                         </Tbody>

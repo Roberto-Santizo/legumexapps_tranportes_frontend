@@ -6,4 +6,6 @@ export abstract class ZonesDatasource {
     abstract getZoneById(id: string): Promise<Zone>;
     abstract createFuelRange(payload: FuelRangeForm, zoneId: string): Promise<string>;
     abstract getFuelPricesByZone(id: string): Promise<FuelRange[]>;
+    abstract deleteFuelRange(id: string): Promise<string>;
+    abstract deleteZone(zoneId: string): Promise<string>;
 }
