@@ -1,5 +1,5 @@
-import { CustomTableLink, Loading, Table, Tbody, Td, Th, Thead, Title, Tr } from "@/features/shared/shared";
-import { EyeIcon } from "lucide-react";
+import { CustomFilledButton, CustomTableLink, Loading, Table, Tbody, Td, Th, Thead, Title, Tr } from "@/features/shared/shared";
+import { EyeIcon, PlusIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { zonesRepositoryProvider } from "@/features/zones/zones";
@@ -16,7 +16,16 @@ export function IndexZones() {
   if (isLoading) return <Loading />
   if (data) return (
     <div className="space-y-5">
-      <Title title="Zonas" subtitle="Zonas Disponibles" />
+      <div className="flex justify-between items-center">
+        <Title title="Zonas" subtitle="Zonas Disponibles" />
+        <CustomFilledButton
+          label="Crear"
+          icon={<PlusIcon />}
+          type="button"
+          onClick={() => navigate('/zonas/crear')}
+        />
+      </div>
+
       <Table>
         <Thead>
           <Th text="Zona" />

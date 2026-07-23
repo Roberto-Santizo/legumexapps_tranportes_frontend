@@ -19,3 +19,4 @@ export * from './LoadingTable';
 export * from './CustomTableLink';
 export * from './Modal';
 export * from './GoogleMap';
+export * from './MapFormField';

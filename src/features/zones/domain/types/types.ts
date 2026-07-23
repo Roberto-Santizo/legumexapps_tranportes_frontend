@@ -6,5 +6,5 @@ export type FuelRange = z.infer<typeof FuelRangeSchema>;
 
 export type ZoneForm = {
     name: string;
-    coordinates: [number, number][];
+    coordinates: number[][];
 }
